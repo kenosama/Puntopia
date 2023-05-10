@@ -11,11 +11,11 @@ const Nav = () => {
   const [providers, setProviders] = useState(null);
   const [toggleDropDown, setToggleDropDown] = useState(false);
   useEffect(() => {
-    const setProviders = async () => {
+    const setUpProviders = async () => {
       const response = await getProviders();
       setProviders(response);
     };
-    setProviders();
+    setUpProviders();
   }, []);
   return (
     <nav className="w-full pt-3 mb-16 flex-between">
@@ -29,7 +29,6 @@ const Nav = () => {
         />
         <p className="logo_text">Puntopia</p>
       </Link>
-     
 
       {/* desktop nav */}
       <div className="hidden sm:flex">
@@ -43,7 +42,7 @@ const Nav = () => {
             </button>
             <Link href="/profile">
               <Image
-                src="/assets/images/logo.svg"
+                src={session?.user.image}
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -72,7 +71,7 @@ const Nav = () => {
         {session?.user ? (
           <div className="flex">
             <Image
-              src="/assets/images/logo.svg"
+              src={session?.user.image}
               width={37}
               height={37}
               className="rounded-full"
