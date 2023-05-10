@@ -9,6 +9,7 @@ import Profile from "@components/Profile";
 const MyProfile = () => {
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -20,8 +21,25 @@ const MyProfile = () => {
     if (session?.user.id) fetchPosts();
   }, []);
 
-  const handleEdit = () => {};
-  const handleDelete = async () => {};
+  const handleEdit = (post) => {
+    router.push(`/update-pun?id=${post._id}`)
+  };
+  const handleDelete = async (post) => {
+    const hasConfirmed = confirm("Are you sure you want to delete this pun?");
+
+    if(hasConfirmed){
+      try {
+        await fetch(`/api/pun/${post._id.toString()}`,  {
+          method:'DELETE'
+        });
+        const filteredPosts= myPosts.filter((post)=>{
+          
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  };
 
   return (
     <Profile

@@ -21,7 +21,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             </span>
 
           <textarea 
-            value={post.prompt}
+            value={post.pun}
             onChange={(e)=>setPost({...post, pun: e.target.value})}
             placeholder="Write your text here"
             required

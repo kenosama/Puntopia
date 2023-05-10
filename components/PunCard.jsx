@@ -6,13 +6,17 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
 const PunCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
+  const { data: session } = useSession();
+  const pathName = usePathname();
+  const router = useRouter();
+  
   const [copied, setCopied] = useState("");
   
   const handleCopy = () =>{
     setCopied(post.pun)
     navigator.clipboard.writeText(post.pun);
     setTimeout(()=>setCopied(""), 3000)
-  }
+  };
 
   return (
     <div className="prompt_card">
@@ -42,6 +46,11 @@ const PunCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                 ? "/assets/icons/tick.svg"
                 : "/assets/icons/copy.svg"
             }
+            alt={
+              copied === post.pun
+                ? "tick icon"
+                : "copy icon"
+            }
             width={12}
             height={12}
           />
@@ -54,6 +63,22 @@ const PunCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       >
         #{post.tag}
       </p>
+      {session?.user.id === post.creator._id && pathName === "/profile" && (
+        <div className="gap-4 pt-3 mt-5 border-t border-gray-100 flex-center">
+          <p
+            className="text-sm cursor-pointer font-inter green_gradient"
+            onClick={handleEdit}
+          >
+            Edit
+          </p>
+          <p
+            className="text-sm cursor-pointer font-inter orange_gradient"
+            onClick={handleDelete}
+          >
+            Delete
+          </p>
+        </div>
+      )}
     </div>
   );
 };
