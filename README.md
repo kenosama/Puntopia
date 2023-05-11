@@ -1,6 +1,8 @@
 # Puntopia
 
-[![Live version Here](https://img.shields.io/badge/Live%20version-Here-blue.svg)](https://puntopia.vercel.app/){:target="_blank"}
+<a href="https://puntopia.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20version-Here-blue.svg" alt="Live version Here">
+</a>
 
 Puntopia is an open-source community sharing tool designed to discover, create, and share funny puns!
 
