@@ -4,6 +4,8 @@
     <img src="https://img.shields.io/badge/Live%20version-Here-blue.svg" alt="Live version Here">
 </a>
 
+![A view of Puntopia](/ReadmeFiles/post-8.jpg)
+
 Puntopia is an open-source community sharing tool designed to discover, create, and share funny puns!
 
 The app provides the following features:
