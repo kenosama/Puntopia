@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image.js";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link.js";
 
 const PunCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const { data: session } = useSession();
@@ -31,8 +32,17 @@ const PunCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           />
 
           <div className="flex flex-col">
+            {console.log(session)}
             <h3 className="font-semibold text-gray-900 font-satoshi">
-              {post.creator.username}
+              <Link
+                href={
+                  post.creator._id === session?.user.id
+                    ? "/profile"
+                    : `/profile/${post.creator._id}?name=${post.creator.username}`
+                }
+              >
+                {post.creator.username}
+              </Link>
             </h3>
             <p className="text-sm text-gray-500 font-inter">
               {post.creator.email}
@@ -46,11 +56,7 @@ const PunCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                 ? "/assets/icons/tick.svg"
                 : "/assets/icons/copy.svg"
             }
-            alt={
-              copied === post.pun
-                ? "tick icon"
-                : "copy icon"
-            }
+            alt={copied === post.pun ? "tick icon" : "copy icon"}
             width={12}
             height={12}
           />
