@@ -114,8 +114,26 @@ The code for the link would be like this:
   {post.creator.username}
 </Link>
 ```
->
->
+
+<details> 
+<summary> Let's breakdown this link together 😁</summary>
+
+- `<Link`: This is the start of a Next.js `Link` component, which is used for client-side navigation in Next.js applications. It renders an anchor tag (`<a>`) and handles the navigation internally without a full page reload.
+
+- `href={...}`: This is an attribute of the `Link` component. It determines the destination URL that the link will navigate to. In this case, it uses a JavaScript expression as the value.
+
+- `post.creator._id === session?.user.id`: This is a conditional expression that checks if the `_id` property of `post.creator` is equal to the `id` property of `session?.user`. The `?.` is an optional chaining operator that prevents an error if `session` or `session.user` is null or undefined.
+
+- `? "/profile" : /profile/${post.creator._id}?name=${post.creator.username}`: This is a ternary operator. If the condition is true (`post.creator._id === session?.user.id`), it sets the href value to `"/profile"`. If the condition is false, it sets the href value to `/profile/${post.creator._id}?name=${post.creator.username}`. This conditionally generates the correct URL for the link based on the comparison.
+
+- `{post.creator.username}`: This is the content of the `Link` component. It will display the `username` property of `post.creator` as the visible text of the link.
+
+- `</Link>`: This is the closing tag of the `Link` component.
+
+Overall, this code snippet is generating a link to a user's profile page. If the `_id` of the `post.creator` matches the `id` of the `session.user`, the link will navigate to "/profile". Otherwise, it will navigate to "/profile/{post.creator._id}?name={post.creator.username}". The `post.creator.username` is displayed as the visible text of the link.
+
+</details> <br><br>
+
 ### The API folder
 >
 This folder contains the router and logic for authentication. [See documentation Here](https://next-auth.js.org/)
@@ -197,3 +215,6 @@ It is also important to mention for the auth to work that you need a Callback UR
 <!-- did i mention i was french speaking? 😄-->
 
 Thank you for your time and enjoy :)
+
+Sure! Here's a breakdown and comment for each line of the code:
+
