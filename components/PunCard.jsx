@@ -32,7 +32,6 @@ const PunCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           />
 
           <div className="flex flex-col">
-            {console.log(session)}
             <h3 className="font-semibold text-gray-900 font-satoshi">
               <Link
                 href={
