@@ -1,13 +1,13 @@
 # Puntopia
 
-Puntopia is a Open-source Community sharing tool to discover, create and share funny puns!
+Puntopia is an open-source community sharing tool designed to discover, create, and share funny puns!
 
-the app allows this:
-- need to sign up to google Auth0 to post puns (we need to know who did what :) ) 
-- CRUD operation for Puns
-- search puns from tags, user, and text in puns
-- see other user profile.
-- Store and Load date from a MongoDB Database.
+The app provides the following features:
+- Users need to sign up with Google Auth0 to post puns (this allows us to track who did what).
+- CRUD operations for puns.
+- Search puns based on tags, users, and text within puns.
+- View other user profiles.
+- Store and load data from a MongoDB database.
 
 # Becode requirement
 
@@ -19,89 +19,77 @@ the app allows this:
 
 ## Intro
 
-We expect you to know how to use React hooks and create JSX components.
-You should also be familiar as for how to route between components and pass information through them.
+The project assumes familiarity with using React hooks, creating JSX components, routing between components, and passing information through them.
 
-Now, we can use that new knowledge to have some fun!
+Now, we can utilize this newfound knowledge to have some fun!
 
 ## Instructions
 
-You will have a week.
+You will have one week to complete this project.
 
-You are free to choose a topic for your project (or use suggested projects below). But should not be spending more than an hour finding a topic!
+You are free to choose your own topic for the project, but please spend no more than an hour deciding on a topic!
 
-**All topics need to have all the following requirements given below as well.**
+**All topics should meet the following requirements.**
 
 ### Requirements
 
-> Using a router
->
-> Multiple pages/components.
->
-> Updating data on change/filter.
->
-> Loading data on page load.
->
-> Installing a package/library to use
->
-> Passing props through components.
+- Use a router.
+- Include multiple pages/components.
+- Implement data updating on change/filter.
+- Load data on page load.
+- Install and use at least one package/library.
+- Pass props through components.
 
-# What did i do
+# What Puntopia Offers
 
-## next.js
+## Next.js
 
-I decided for this assignement to use Next.js instead of pure REACT, why?
+For this assignment, Next.js was chosen over pure React. The reasons for this decision are as follows:
 
-- Next.js routing system is way easier and simple to use (and allow easy dynamic routes).
-- Next.js allows interaction with databases, which allows me to develop FullStack apps instead of pure frontend apps.
-- Next.js allows to manage to works with router depending of the method you use from a URL.
-- Doc of react itself preconize to use frameworks to code react apps.
-- Next.js by default works on server side, if client sided component would be needed, the first line of the component needs **"use client"** code. [More info Here](https://nextjs.org/docs/getting-started/react-essentials#when-to-use-server-and-client-components)
+- Next.js provides an easier and simpler routing system, including support for dynamic routes.
+- Next.js allows interaction with databases, enabling the development of full-stack applications instead of just front-end apps.
+- Next.js offers flexibility in router management based on the method used from a URL.
+- React's official documentation recommends using frameworks to build React apps.
+- By default, Next.js works on the server side, and if a client-sided component is required, the first line of the component should include the code "use client." [More info here](https://nextjs.org/docs/getting-started/react-essentials#when-to-use-server-and-client-components)
 
-## Other technologies used.
+## Other Technologies Used
 
 - MongoDB
-- TailwindCSS
-- Google 0auth
+- Tailwind CSS
+- Google Auth0
 - bcrypt
 
 ## Files Structure
 
 <details>
-<summary>Click here to see the picture of file structure </summary>
+<summary>Click here to see the picture of the file structure</summary>
  
- ![a preview of the file structure](./ReadmeFiles/fileStructure.png)
+![Preview of the file structure](./ReadmeFiles/fileStructure.png)
 </details>
-The App occurs in the app folder, in Next.js, the base layout and page refer to the index of the application.
-<br><br>
 
-### Nextjs routing system
+The main application is located in the `app` folder. In Next.js, the base layout and page correspond to the application's index.
 
-Every folder inside the app folder will be equal as a route.
-for example, the profile folder with a page.jsx inside would be the same as:
+### Next.js Routing System
 
-    app
-    └── profile
-        └── page.jsx
+Every folder inside the `app` folder is considered a route. For example, a `profile` folder with a `page.jsx` inside it would correspond to the following route:
 
+```
+http://mysite.com/profile
+```
 
-> ```
-> http://mysite.com/profile
-> ```
->
+For dynamic routes, create an inside folder with the name of the dynamic parameter enclosed in square brackets. In this case, clicking on a user's email allows you to navigate to their profile and view their posts.
 
- for the dynamic routes, an inside folder is created with a name of the parameter you want to be dynamic between **square brackets**.
- In my case, if i click on the email of the user, i can go to his profile and see his post.
+The folder structure for this would be:
 
-so the structure folder would be:
+```
+app
+└── profile
+    ├── [id]
+    │   └── page.jsx
+    └── page.jsx
+```
 
-    app
-    └── profile
-        ├── [id]
-        │   └── page.jsx
-        └── page.jsx
-
-The code for the link would be like this:
+The code for the link would look like this:
 
 ```jsx
 <Link
@@ -114,7 +102,6 @@ The code for the link would be like this:
   {post.creator.username}
 </Link>
 ```
-
 <details> 
 <summary> Let's breakdown this link together 😁</summary>
 
@@ -134,31 +121,35 @@ Overall, this code snippet is generating a link to a user's profile page. If the
 
 </details> <br><br>
 
-### The API folder
->
-This folder contains the router and logic for authentication. [See documentation Here](https://next-auth.js.org/)
->
-In the **Pun** folder, we find the logic and router for the interaction with the Database. I used [Mongoose](https://mongoosejs.com/) to ease the operation (like Schema creation (table creation), and connections with DB).
+### The API Folder
 
->- first i imported the logic of connection from the utils folder
->- then i imported the Model of Pun, which contains the Schema for MongoDB.
->- from there i make a function with the method needed wich contains a try/catch method to interact with the DB.
+This folder contains the router and logic for authentication. [See documentation here](https://next-auth.js.org/)
 
->
+In the API folder, you'll find the router and logic for authentication using Next.js' API routes. The authentication logic is implemented using the NextAuth.js library, which simplifies the authentication process. You can refer to the documentation for more information on how to configure NextAuth.js for your project.
+
+Within the **Pun** folder, you'll find the logic and router for interacting with the database. To facilitate this interaction, the project utilizes Mongoose, an Object Data Modeling (ODM) library for MongoDB.
+
+- First, the connection logic is imported from the utils folder.
+- Then, the Pun model is imported, which defines the schema for storing puns in MongoDB.
+- Inside the Pun folder, there is a function with the necessary methods to interact with the database. It follows a try-catch structure to handle any errors that may occur during the interaction.
+
 ### The Component Folder
-This folder contains the react component like Navbar, Form, Profile, Puncard, Feed and Providers i use/re-use along the app.
->
-### The model Folder
-Mongoose needs to have Schema to create the "table" on MongoDB, in this folder i created two models, one for the Puns and the other one for the User.
 
-#### The Pun model
->In this schema, there is a field named creator that represents a reference to a User model. This indicates a one-to-many relationship between the Pun model and the User model.
->
->Specifically, the creator field is of type Schema.Types.ObjectId and is referencing the "User" model using the ref property. This means that each Pun document will have a reference to the corresponding User document as its creator.
->
->With this setup, multiple Pun documents can reference the same User document, creating a one-to-many relationship where one user can be associated with multiple puns.
->
->It's important to note that this code snippet only represents the schema definition and the association between the Pun and User models. The actual relationship between the models will be established when you create and save the documents using Mongoose. 
+The Component folder contains reusable React components such as Navbar, Form, Profile, Puncard, Feed, and Providers. These components are utilized throughout the application to create a consistent UI and provide necessary functionality.
+
+### The Model Folder
+
+The Model folder contains the Mongoose schemas for the application. In this case, there are two models: Pun and User.
+
+#### The Pun Model
+
+The Pun model schema includes a field named `creator` that represents a reference to a User model. This establishes a one-to-many relationship between the Pun model and the User model.
+
+The `creator` field is of type `Schema.Types.ObjectId` and uses the `ref` property to reference the "User" model. This means that each Pun document will have a reference to the corresponding User document as its creator.
+
+With this setup, multiple Pun documents can reference the same User document, creating a one-to-many relationship where one user can be associated with multiple puns.
+
+It's important to note that the code snippet only represents the schema definition and the association between the Pun and User models. The actual relationship between the models will be established when creating and saving the documents using Mongoose.
 
 <details>
 <summary>Click here to see the code</summary>
@@ -203,18 +194,14 @@ const Pun = models.Pun ||  model('Pun', PunSchema);
 
 </details>
 
-I let you make the same reflection for the user model :)
+Similar to the Pun model, the User model is defined with its own schema to store user-related information.
 
-### Extra infos
-i included an .env.example file to get the basic structure of the env file.
+### Extra Info
 
-It is also important to mention for the auth to work that you need a Callback URI you can specify this URI in the credential of your oauth client on [console.google.com](https://console.cloud.google.com/apis/credentials/oauthclient/)
+The project includes an `.env.example` file to provide the basic structure for the environment file. It's recommended to create an actual `.env` file based on the example and populate it with the required credentials and configuration specific to your project.
 
-![Uri config](./ReadmeFiles/uriConfig.png)
+To ensure that the authentication works properly, you need to specify a Callback URI. This URI can be configured in the credentials of your OAuth client on the [Google Cloud Console](https://console.cloud.google.com/apis/credentials/oauthclient/).
 
-<!-- did i mention i was french speaking? 😄-->
+![URI Config](./ReadmeFiles/uriConfig.png)
 
-Thank you for your time and enjoy :)
-
-Sure! Here's a breakdown and comment for each line of the code:
-
+Thank you for taking the time to read this, and enjoy exploring Puntopia!
