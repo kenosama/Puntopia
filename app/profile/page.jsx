@@ -32,9 +32,9 @@ const MyProfile = () => {
         await fetch(`/api/pun/${post._id.toString()}`,  {
           method:'DELETE'
         });
-        const filteredPosts= myPosts.filter((post)=>{
-          
-        })
+        const filteredPosts= posts.filter((p)=>
+          p._id!== post._id);
+        setPosts(filteredPosts);
       } catch (error) {
         console.log(error)
       }
